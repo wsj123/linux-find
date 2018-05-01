@@ -1,37 +1,75 @@
-## Welcome to GitHub Pages
+## Linux find命令学习
 
-You can use the [editor on GitHub](https://github.com/wsj123/linux-find/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+find命令强大，但是选项较多，学习比较繁琐，占用内存消耗较大
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### 命令展示
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+纷繁的选项
 
 ```markdown
-Syntax highlighted code block
+按照名字搜索
+find / -name install.log
 
-# Header 1
-## Header 2
-### Header 3
+find /root -name "install*"
 
-- Bulleted
-- List
+find /root -name "*"
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+find /root -name "ab[cd]"
 
-[Link](url) and ![Image](src)
+
+find /root -name "*[cd]"
+
+find /root -iname install.log
+
+find /root -user root
+
+find /root -nouser
+
+ll
+
+按照属性时间筛选
+find /root -nouser
+没有所有者:内核产生的文件:/sys   /proc,外来文件(u盘)
+
+find  /var/log -mtime +10   修改文件内容
+find  /var/log -atime +10   访问文件时间
+find  /var/log -ctime +10   改变文件属性
+
+find  /var/log -ctime -10  十天内
+
+find  /var/log -ctime 10  第十天
+
+按照文件大小查找
+ll -h 查看文件大小
+
+find /etc -size 25k
+find /etc -size +25k
+find /etc -size 25k
+
+
+find /etc -size +2M
+
+find /root -size 25
+
+find . -inum 262422
+
+
+ls -i
+
+find /root -inum 26241
+
+find /etc -size +20k -a -size -50k
+
+ls -lh /etc/mine.types
+
+find /etc -size +20k -a -size -50k -exec ls -lh {} \;
+
+
+find /root -inum 262421 -exec rm -rf {} \;
+
+
+
+
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/wsj123/linux-find/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
